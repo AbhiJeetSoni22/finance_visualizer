@@ -3,12 +3,24 @@
 import { TransactionForm } from './components/TransactionForm';
 import { TransactionsList } from './components/TransactionsList';
 import { MonthlyChart } from './components/MonthlyChart';
-
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-export function TransactionsPage({ transactions }: { transactions: any[] }) {
+// Define a proper type for your transactions
+interface Transaction {
+  id: string;
+  amount: number;
+  date: string;
+  description: string;
+  type: 'expense' | 'income';
+}
+
+interface TransactionsPageProps {
+  transactions: Transaction[];
+}
+
+export function TransactionsPage({ transactions }: TransactionsPageProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
