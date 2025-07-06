@@ -104,6 +104,7 @@ export function TransactionForm({ open, onOpenChange, transaction }: Transaction
       onOpenChange(false);
       router.refresh();
     } catch (err) {
+        console.log(err)
       setError('Failed to save transaction. Please try again.');
     } finally {
       setIsLoading(false);

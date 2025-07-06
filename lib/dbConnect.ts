@@ -1,18 +1,14 @@
 import mongoose from 'mongoose';
 
-// 1. Define the interface for your cache
+// Define the interface for your cache
 interface MongooseCache {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
 }
 
-// 2. Extend the global namespace
+// Type augmentation for globalThis (modern alternative to namespace)
 declare global {
-  namespace NodeJS {
-    interface Global {
-      mongoose: MongooseCache;
-    }
-  }
+  var mongoose: MongooseCache;
 }
 
 const MONGODB_URI = process.env.MONGODB_URI!;
@@ -21,11 +17,11 @@ if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
-// 3. Initialize with proper typing
-let cached: MongooseCache = (global as any).mongoose;
+// Initialize with proper typing
+let cached: MongooseCache = global.mongoose;
 
 if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
 async function dbConnect(): Promise<typeof mongoose> {

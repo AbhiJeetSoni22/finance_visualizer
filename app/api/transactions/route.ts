@@ -16,6 +16,7 @@ export async function POST(request: Request) {
     const transaction = await Transaction.create(data);
     return NextResponse.json(transaction, { status: 201 });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Failed to create transaction' }, { status: 400 });
   }
 }

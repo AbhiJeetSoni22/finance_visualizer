@@ -11,6 +11,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
     }
     return NextResponse.json(transaction);
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
@@ -26,6 +27,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
     return NextResponse.json(transaction);
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Failed to update transaction' }, { status: 400 });
   }
 }
@@ -40,6 +42,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     }
     return NextResponse.json({ message: 'Transaction deleted' });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Failed to delete transaction' }, { status: 400 });
   }
 }
