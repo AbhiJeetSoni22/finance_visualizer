@@ -6,9 +6,7 @@
     "dev": "next dev --turbopack",
       "build": "next build && node ./scripts/patch-types.js",
     "start": "next start",
-    "lint": "next lint",
-     "postinstall": "node scripts/fix-types.js",
-    "prebuild":"node scripts/fix-types.mjs"
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
