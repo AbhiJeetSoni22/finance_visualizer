@@ -5,7 +5,12 @@ import { TransactionsList } from '../components/TransactionsList';
 import { MonthlyChart } from '../components/MonthlyChart';
 
 async function getTransactions() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transactions`, {
+  // Use dynamic base URL (works in both dev & prod)
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : 'http://localhost:3000';
+
+  const res = await fetch(`${baseUrl}/api/transactions`, {
     cache: 'no-store',
   });
 
